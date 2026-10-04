@@ -5,5 +5,6 @@ public class AppDbContext : DbContext {
 
     public DbSet<Department> Departments {get; set;}
     public DbSet<ReviewStatus> ReviewStatuses {get; set;}
+    public DbSet<User> Users {get; set;}
 }
 
