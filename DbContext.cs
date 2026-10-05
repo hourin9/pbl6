@@ -18,7 +18,7 @@ public class AppDbContext : DbContext {
             e.HasOne(u => u.Department)
                 .WithMany(d => d.Users)
                 .HasForeignKey(u => u.DepartmentId)
-                .IsRequired();
+                .OnDelete(DeleteBehavior.Restrict);
         });
 
         b.Entity<Department>(e => {
@@ -33,13 +33,26 @@ public class AppDbContext : DbContext {
             e.HasOne(c => c.ReviewedBy)
                 .WithMany(u => u.Cases)
                 .HasForeignKey(c => c.ReviewerId)
-                .IsRequired();
+                .OnDelete(DeleteBehavior.Restrict);
 
             e.HasOne(c => c.ReviewStatus)
                 .WithMany(r => r.Cases)
                 .HasForeignKey(c => c.StatusId)
-                .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
+        });
+
+        b.Entity<ScanImage>(e => {
+            e.HasKey(s => s.Id);
+
+            e.HasOne(s => s.Case)
+                .WithMany(c => c.Images)
+                .HasForeignKey(s => s.CaseId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            e.HasOne(s => s.UploadedBy)
+                .WithMany(u => u.Images)
+                .HasForeignKey(s => s.UploaderId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
     }
 }

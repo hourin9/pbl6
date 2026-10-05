@@ -12,5 +12,8 @@ public class User {
 
     public ICollection<Case> Cases {get; set;}
         = new List<Case>();
+
+    public ICollection<ScanImage> Images {get; set;}
+        = new List<ScanImage>();
 }
 

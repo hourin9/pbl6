@@ -10,5 +10,8 @@ public class Case {
 
     public required int StatusId {get; set;}
     public ReviewStatus? ReviewStatus {get; set;}
+
+    public ICollection<ScanImage> Images {get; set;}
+        = new List<ScanImage>();
 }
 
