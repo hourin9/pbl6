@@ -3,10 +3,13 @@ using Microsoft.EntityFrameworkCore;
 public class AppDbContext : DbContext {
     public AppDbContext(DbContextOptions<AppDbContext> opts) : base(opts) { }
 
-    public DbSet<Department> Departments {get; set;}
-    public DbSet<ReviewStatus> ReviewStatuses {get; set;}
-    public DbSet<User> Users {get; set;}
+    public DbSet<Alert> Alerts {get; set;}
     public DbSet<Case> Cases {get; set;}
+    public DbSet<Department> Departments {get; set;}
+    public DbSet<Patient> Patients {get; set;}
+    public DbSet<ReviewStatus> ReviewStatuses {get; set;}
+    public DbSet<ScanImage> ScanImages {get; set;}
+    public DbSet<User> Users {get; set;}
 
     protected override void OnModelCreating(ModelBuilder b)
     {

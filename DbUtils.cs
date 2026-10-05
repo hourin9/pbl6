@@ -4,5 +4,10 @@ class DbUtils {
         db.Database.EnsureDeleted();
         db.Database.EnsureCreated();
     }
+
+    public static void FillDefaultAccounts(AppDbContext db)
+    {
+        ;
+    }
 }
 
