@@ -9,5 +9,8 @@ public class User {
 
     public bool IsAdmin {get; set;} = false;
     public bool OnShift {get; set;} = false;
+
+    public ICollection<Case> Cases {get; set;}
+        = new List<Case>();
 }
 
