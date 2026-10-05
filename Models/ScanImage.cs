@@ -8,5 +8,7 @@ public class ScanImage {
 
     public required int UploaderId {get; set;}
     public User? UploadedBy {get; set;}
+
+    public DetectionResult? Result {get; set;}
 }
 

@@ -10,6 +10,7 @@ public class AppDbContext : DbContext {
     public DbSet<ReviewStatus> ReviewStatuses {get; set;}
     public DbSet<ScanImage> ScanImages {get; set;}
     public DbSet<User> Users {get; set;}
+    public DbSet<DetectionResult> DetectionResults {get; set;}
 
     protected override void OnModelCreating(ModelBuilder b)
     {
@@ -74,6 +75,15 @@ public class AppDbContext : DbContext {
             e.HasOne(a => a.Case)
                 .WithMany()
                 .HasForeignKey(a => a.CaseId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        b.Entity<DetectionResult>(e => {
+            e.HasKey(r => r.Id);
+
+            e.HasOne(r => r.ScanImage)
+                .WithOne(i => i.Result)
+                .HasForeignKey<DetectionResult>(r => r.ScanImageId)
                 .OnDelete(DeleteBehavior.Cascade);
         });
     }
