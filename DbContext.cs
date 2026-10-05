@@ -11,6 +11,7 @@ public class AppDbContext : DbContext {
     public DbSet<ScanImage> ScanImages {get; set;}
     public DbSet<User> Users {get; set;}
     public DbSet<DetectionResult> DetectionResults {get; set;}
+    public DbSet<AuditLog> AuditLogs {get; set;}
 
     protected override void OnModelCreating(ModelBuilder b)
     {
@@ -22,6 +23,15 @@ public class AppDbContext : DbContext {
             e.HasOne(u => u.Department)
                 .WithMany(d => d.Users)
                 .HasForeignKey(u => u.DepartmentId)
+                .OnDelete(DeleteBehavior.Restrict);
+        });
+
+        b.Entity<AuditLog>(e => {
+            e.HasKey(l => l.Id);
+
+            e.HasOne(l => l.User)
+                .WithMany()
+                .HasForeignKey(l => l.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
         });
 
