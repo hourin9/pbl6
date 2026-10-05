@@ -54,6 +54,20 @@ public class AppDbContext : DbContext {
                 .HasForeignKey(s => s.UploaderId)
                 .OnDelete(DeleteBehavior.Cascade);
         });
+
+        b.Entity<Alert>(e => {
+            e.HasKey(a => a.Id);
+
+            e.HasOne(a => a.SentTo)
+                .WithMany()
+                .HasForeignKey(a => a.SentToId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            e.HasOne(a => a.Case)
+                .WithMany()
+                .HasForeignKey(a => a.CaseId)
+                .OnDelete(DeleteBehavior.Cascade);
+        });
     }
 }
 
