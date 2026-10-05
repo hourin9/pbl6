@@ -5,6 +5,9 @@ public class Case {
     public DateTime? ReviewedAt {get; set;}
     public string Note {get; set;} = String.Empty;
 
+    public required int PatientId {get; set;}
+    public Patient? Patient {get; set;}
+
     public required int ReviewerId {get; set;}
     public User? ReviewedBy {get; set;}
 

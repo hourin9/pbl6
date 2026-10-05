@@ -39,6 +39,11 @@ public class AppDbContext : DbContext {
                 .WithMany(r => r.Cases)
                 .HasForeignKey(c => c.StatusId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            e.HasOne(c => c.Patient)
+                .WithMany(p => p.History)
+                .HasForeignKey(c => c.PatientId)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         b.Entity<ScanImage>(e => {
