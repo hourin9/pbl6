@@ -5,6 +5,19 @@ class DbUtils {
         db.Database.EnsureCreated();
     }
 
+    public static void FillDefaultDepartments(AppDbContext db)
+    {
+        var deps = new List<Department> {
+            new Department { Name = "Tai Mui Hong" },
+            new Department { Name = "Tim mach" },
+            new Department { Name = "Ho hap" },
+            new Department { Name = "Nao" },
+        };
+
+        db.Departments.AddRange(deps);
+        db.SaveChanges();
+    }
+
     public static void FillDefaultAccounts(AppDbContext db)
     {
         Patient p = new Patient {
