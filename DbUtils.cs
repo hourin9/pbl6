@@ -28,10 +28,18 @@ class DbUtils {
 
         db.Patients.Add(p);
 
+        Department tmp;
+        try {
+            tmp = db.Departments.First();
+        } catch (ArgumentNullException) {
+            Console.WriteLine("Call FillDefaultDepartments() first");
+            return;
+        }
+
         User admin = new User {
             Name = "bigboss",
             FullName = "Le Van Big Boss",
-            DepartmentId = 0,
+            DepartmentId = tmp.Id,
             PasswordHash = "chol",
             IsAdmin = true,
         };
@@ -41,7 +49,7 @@ class DbUtils {
         User doc = new User {
             Name = "charlotte",
             FullName = "Charlotte Ruisch",
-            DepartmentId = 0,
+            DepartmentId = tmp.Id,
             PasswordHash = "cisco123",
             IsAdmin = false,
         };
