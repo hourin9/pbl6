@@ -13,9 +13,18 @@ public class PatientController : ControllerBase {
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Patient>>> GetPatient()
+    public async Task<ActionResult<IEnumerable<Patient>>> Get()
     {
         return await _db.Patients.ToListAsync();
+    }
+
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<Patient>> Get(int id)
+    {
+        var pat = await _db.Patients.FindAsync(id);
+        if (pat == null)
+            return NotFound();
+        return Ok(pat);
     }
 
     private readonly AppDbContext _db;

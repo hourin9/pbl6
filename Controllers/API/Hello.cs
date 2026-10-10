@@ -6,7 +6,7 @@ namespace PBL6.Controllers.Api;
 [ApiController]
 public class HelloController : ControllerBase {
     [HttpGet]
-    public IActionResult GetHello()
+    public IActionResult Get()
     {
         return Ok("Hello World");
     }
