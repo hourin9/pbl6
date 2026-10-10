@@ -14,6 +14,14 @@ builder.Services.AddDbContext<AppDbContext>(opts =>
         ServerVersion.AutoDetect(connectionString)
     ));
 
+builder.Services.AddCors(opt => {
+    opt.AddPolicy("AllowSpecificOrigin", policy => {
+        policy.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        });
+    });
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope()) {
@@ -41,6 +49,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
 
 app.Run();
