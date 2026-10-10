@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PBL6;
 using PBL6.Models;
 
 namespace PBL6.Controllers.Api;
