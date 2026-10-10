@@ -1,3 +1,5 @@
+namespace PBL6.Models;
+
 public class DetectionResult {
     public int Id {get; set;}
 

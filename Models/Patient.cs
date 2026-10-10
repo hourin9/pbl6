@@ -1,3 +1,5 @@
+namespace PBL6.Models;
+
 public class Patient {
     public int Id {get; set;}
     public string? CCCD {get; set;}

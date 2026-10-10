@@ -1,3 +1,5 @@
+namespace PBL6.Models;
+
 public class ScanImage {
     public int Id {get; set;}
 

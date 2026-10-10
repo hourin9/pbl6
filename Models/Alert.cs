@@ -1,3 +1,5 @@
+namespace PBL6.Models;
+
 public class Alert {
     public int Id {get; set;}
     public bool Acknowledged {get; set;} = false;

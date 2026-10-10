@@ -1,3 +1,5 @@
+namespace PBL6.Models;
+
 public class AuditLog {
     public int Id {get; set;}
 

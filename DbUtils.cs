@@ -1,3 +1,5 @@
+using PBL6.Models;
+
 class DbUtils {
     public static void NukeRestart(AppDbContext db)
     {

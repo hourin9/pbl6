@@ -1,3 +1,5 @@
+namespace PBL6.Models;
+
 public class Case {
     public int Id {get; set;}
     public int PriorityLevel {get; set;} = 0;
