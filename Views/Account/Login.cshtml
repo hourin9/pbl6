@@ -1,0 +1,71 @@
+@{
+    ViewData["Title"] = "Admin Login";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <h2>Admin Login</h2>
+
+        <!-- Error message alert box -->
+        <div id="errorAlert" class="alert alert-danger d-none" role="alert"></div>
+
+        <form id="loginForm">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" class="form-control" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Log In</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const usernameInput = document.getElementById('username').value;
+            const passwordInput = document.getElementById('password').value;
+            const errorAlert = document.getElementById('errorAlert');
+
+            // Hide previous errors
+            errorAlert.classList.add('d-none');
+
+            try {
+                // Call your existing API endpoint
+                const response = await fetch('/api/user/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    // 'same-origin' ensures the authentication cookie is accepted and stored by the browser
+                    credentials: 'same-origin',
+                    body: JSON.stringify({
+                        name: usernameInput,
+                        password: passwordInput
+                    })
+                });
+
+                if (response.ok) {
+                    // API succeeded and set the cookie; redirect to your admin dashboard
+                    window.location.href = '/';
+                } else {
+                    // Parse error message returned by the API
+                    const errorData = await response.json();
+                    errorAlert.textContent = errorData.message || 'Invalid username or password.';
+                    errorAlert.classList.remove('d-none');
+                }
+            } catch (err) {
+                errorAlert.textContent = 'A network error occurred. Please try again.';
+                errorAlert.classList.remove('d-none');
+            }
+        });
+    </script>
+}
+
