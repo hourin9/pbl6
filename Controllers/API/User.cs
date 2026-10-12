@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PBL6.Models;
@@ -27,7 +29,7 @@ public class UserController : ControllerBase {
         return Ok(usr);
     }
 
-    [HttpPost("post")]
+    [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] Dto.Login m)
     {
         var usr = await _db.Users.FirstOrDefaultAsync(u => u.Name == m.Name);
@@ -37,6 +39,15 @@ public class UserController : ControllerBase {
         if (m.Password == usr.PasswordHash)
             return Unauthorized("Invalid username or password");
 
+        return Ok();
+    }
+
+    [HttpPost("logout")]
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync(
+            CookieAuthenticationDefaults.AuthenticationScheme
+        );
         return Ok();
     }
 
