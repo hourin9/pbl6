@@ -15,7 +15,7 @@ builder.Services.AddDbContext<AppDbContext>(opts =>
     ));
 
 builder.Services.AddCors(opt => {
-    opt.AddPolicy("AllowSpecificOrigin", policy => {
+    opt.AddPolicy("AllowAll", policy => {
         policy.AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod();
@@ -42,6 +42,8 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseCors("AllowAll");
 
 app.MapStaticAssets();
 
