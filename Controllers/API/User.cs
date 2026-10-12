@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using PBL6.Models;
 
 namespace PBL6.Controllers.Api;
@@ -38,6 +39,22 @@ public class UserController : ControllerBase {
 
         if (m.Password == usr.PasswordHash)
             return Unauthorized("Invalid username or password");
+
+        var claims = new List<Claim> {
+            new Claim(ClaimTypes.NameIdentifier, usr.Id.ToString()),
+            new Claim(ClaimTypes.Name, usr.Name),
+            new Claim(ClaimTypes.Role, usr.IsAdmin ? "admin" : "user"),
+        };
+
+        var claimsIdn = new ClaimsIdentity(
+            claims,
+            CookieAuthenticationDefaults.AuthenticationScheme
+        );
+
+        await HttpContext.SignInAsync(
+            CookieAuthenticationDefaults.AuthenticationScheme,
+            new ClaimsPrincipal(claimsIdn)
+        );
 
         return Ok();
     }
