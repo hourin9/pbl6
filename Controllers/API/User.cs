@@ -37,7 +37,7 @@ public class UserController : ControllerBase {
         if (usr == null)
             return Unauthorized("Invalid username or password");
 
-        if (m.Password == usr.PasswordHash)
+        if (m.Password != usr.PasswordHash)
             return Unauthorized("Invalid username or password");
 
         var claims = new List<Claim> {
