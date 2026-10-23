@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PBL6.Models;
 
 namespace PBL6.Controllers.Api;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class PatientController : ControllerBase {
