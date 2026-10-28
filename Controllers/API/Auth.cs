@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
+using PBL6.Dtos;
+
 namespace PBL6.Controllers.Api;
 
 [Route("api/[controller]")]
@@ -15,7 +17,7 @@ public class AuthController : ControllerBase {
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] Dto.Login m)
+    public async Task<IActionResult> Login([FromBody] LoginDto m)
     {
         var usr = await _db.Users.FirstOrDefaultAsync(u => u.Name == m.Name);
         if (usr == null)

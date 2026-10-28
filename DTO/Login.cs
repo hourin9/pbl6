@@ -1,6 +1,6 @@
-namespace PBL6.Dto;
+namespace PBL6.Dtos;
 
-public class Login {
+public class LoginDto {
     public required string Name { get; set; }
     public required string Password { get; set; }
 }

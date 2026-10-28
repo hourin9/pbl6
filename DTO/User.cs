@@ -1,9 +1,9 @@
-namespace PBL6.Dto;
+namespace PBL6.Dtos;
 
-public class Department {
-    public Department() { }
+public class DepartmentDto {
+    public DepartmentDto() { }
 
-    public Department(Models.Department d)
+    public DepartmentDto(Models.Department d)
     {
         Name = d.Name;
     }
@@ -11,22 +11,22 @@ public class Department {
     public string Name {get; set;} = String.Empty;
 }
 
-public class User {
-    public User() { }
+public class UserDto {
+    public UserDto() { }
 
-    public User(Models.User u)
+    public UserDto(Models.User u)
     {
         FullName = u.FullName;
         IsAdmin = u.IsAdmin;
 
         Department = u.Department != null
-            ? new Department(u.Department)
+            ? new DepartmentDto(u.Department)
             : null;
     }
 
     public string FullName {get; set;} = String.Empty;
 
-    public Department? Department {get; set;}
+    public DepartmentDto? Department {get; set;}
 
     public bool IsAdmin {get; set;} = false;
     public bool OnShift {get; set;} = false;
