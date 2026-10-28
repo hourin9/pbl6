@@ -20,6 +20,7 @@ public class UserController : ControllerBase {
     public async Task<ActionResult<IEnumerable<Dto.User>>> Get()
     {
         return await _db.Users
+            .Include(u => u.Department)
             .Select(u => new Dto.User(u))
             .ToListAsync();
     }
@@ -27,7 +28,9 @@ public class UserController : ControllerBase {
     [HttpGet("{id:int}")]
     public async Task<ActionResult<Dto.User>> Get(int id)
     {
-        var usr = await _db.Users.FindAsync(id);
+        var usr = await _db.Users
+            .Include(u => u.Department)
+            .FirstOrDefaultAsync(u => u.Id == id);
         if (usr == null)
             return NotFound();
         return Ok(new Dto.User(usr));
