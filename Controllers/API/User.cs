@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-using PBL6.Models;
 
 namespace PBL6.Controllers.Api;
 
@@ -18,18 +17,20 @@ public class UserController : ControllerBase {
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<User>>> Get()
+    public async Task<ActionResult<IEnumerable<Dto.User>>> Get()
     {
-        return await _db.Users.ToListAsync();
+        return await _db.Users
+            .Select(u => new Dto.User(u))
+            .ToListAsync();
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<User>> Get(int id)
+    public async Task<ActionResult<Dto.User>> Get(int id)
     {
         var usr = await _db.Users.FindAsync(id);
         if (usr == null)
             return NotFound();
-        return Ok(usr);
+        return Ok(new Dto.User(usr));
     }
 
     private readonly AppDbContext _db;
