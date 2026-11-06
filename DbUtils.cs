@@ -7,6 +7,19 @@ class DbUtils {
         db.Database.EnsureCreated();
     }
 
+    public static void FillReviewStatus(AppDbContext db)
+    {
+        var st = new List<ReviewStatus> {
+            new ReviewStatus { Name = "Pending" },
+            new ReviewStatus { Name = "Processing" },
+            new ReviewStatus { Name = "Done" },
+            new ReviewStatus { Name = "Failed" },
+        };
+
+        db.ReviewStatuses.AddRange(st);
+        db.SaveChanges();
+    }
+
     public static void FillDefaultDepartments(AppDbContext db)
     {
         var deps = new List<Department> {

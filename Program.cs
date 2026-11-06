@@ -41,6 +41,7 @@ app.UseSwaggerUI();
 using (var scope = app.Services.CreateScope()) {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     DbUtils.NukeRestart(db);
+    DbUtils.FillReviewStatus(db);
     DbUtils.FillDefaultDepartments(db);
     DbUtils.FillDefaultAccounts(db);
 }
