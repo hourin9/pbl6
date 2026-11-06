@@ -11,7 +11,7 @@ public class PatientDto {
     }
 
     public string? CCCD {get; set;}
-    public required string Name {get; set;}
-    public required DateOnly DOB {get; set;}
+    public string Name {get; set;} = String.Empty;
+    public DateOnly DOB {get; set;}
 }
 
