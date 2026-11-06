@@ -10,10 +10,10 @@ class DbUtils {
     public static void FillReviewStatus(AppDbContext db)
     {
         var st = new List<ReviewStatus> {
-            new ReviewStatus { Name = "Pending" },
-            new ReviewStatus { Name = "Processing" },
-            new ReviewStatus { Name = "Done" },
-            new ReviewStatus { Name = "Failed" },
+            new ReviewStatus { Id = StatusIds.Pending, Name = "Pending" },
+            new ReviewStatus { Id = StatusIds.Processing, Name = "Processing" },
+            new ReviewStatus { Id = StatusIds.Done, Name = "Done" },
+            new ReviewStatus { Id = StatusIds.Failed, Name = "Failed" },
         };
 
         db.ReviewStatuses.AddRange(st);
