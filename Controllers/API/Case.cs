@@ -46,6 +46,18 @@ public class CaseController : ControllerBase {
         return Ok();
     }
 
+    [HttpPost("{id:int}/deny")]
+    public async Task<IActionResult> Deny(int id, [FromBody] string note)
+    {
+        var cas = await _db.Cases.FindAsync(id);
+        if (cas == null)
+            return NotFound();
+
+        // Queue stuff here
+
+        return Ok();
+    }
+
     private readonly AppDbContext _db;
 }
 
