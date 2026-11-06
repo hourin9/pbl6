@@ -30,6 +30,22 @@ public class CaseController : ControllerBase {
         return Ok(new CaseDto(cas));
     }
 
+    [HttpPost("{id:int}/accept")]
+    public async Task<IActionResult> Accept(int id, [FromBody] string note)
+    {
+        var cas = await _db.Cases.FindAsync(id);
+        if (cas == null)
+            return NotFound();
+
+        cas.ReviewStatus = await _db.ReviewStatuses
+            .FindAsync(Models.StatusIds.Done);
+
+        cas.Note = note;
+
+        await _db.SaveChangesAsync();
+        return Ok();
+    }
+
     private readonly AppDbContext _db;
 }
 
