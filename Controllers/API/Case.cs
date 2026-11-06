@@ -18,7 +18,7 @@ public class CaseController : ControllerBase {
     // different APIs?
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Patient>> Get(int id)
+    public async Task<ActionResult<Case>> Get(int id)
     {
         var cas = await _db.Cases.FindAsync(id);
         if (cas == null)
