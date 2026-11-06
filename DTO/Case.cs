@@ -1,5 +1,16 @@
 namespace PBL6.Dtos;
 
+public class ReviewStatusDto {
+    public ReviewStatusDto() {}
+
+    public ReviewStatusDto(Models.ReviewStatus r)
+    {
+        Name = r.Name;
+    }
+
+    public string Name {get; set;} = String.Empty;
+}
+
 public class CaseDto {
     public CaseDto() { }
 
@@ -13,6 +24,10 @@ public class CaseDto {
         Patient = c.Patient != null
             ? new PatientDto(c.Patient)
             : null;
+
+        ReviewStatus = c.ReviewStatus != null
+            ? new ReviewStatusDto(c.ReviewStatus)
+            : null;
     }
 
     public int PriorityLevel {get; set;}
@@ -22,5 +37,6 @@ public class CaseDto {
     public string Note {get; set;} = String.Empty;
 
     public PatientDto? Patient;
+    public ReviewStatusDto? ReviewStatus;
 }
 
