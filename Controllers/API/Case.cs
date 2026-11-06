@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PBL6.Models;
+using PBL6.Dtos;
 
 namespace PBL6.Controllers.Api;
 
@@ -20,10 +21,13 @@ public class CaseController : ControllerBase {
     [HttpGet("{id:int}")]
     public async Task<ActionResult<Case>> Get(int id)
     {
-        var cas = await _db.Cases.FindAsync(id);
+        var cas = await _db.Cases
+            .Include(c => c.Patient)
+            .Include(c => c.ReviewStatus)
+            .FirstOrDefaultAsync(c => c.Id == id);
         if (cas == null)
             return NotFound();
-        return Ok(cas);
+        return Ok(new CaseDto(cas));
     }
 
     private readonly AppDbContext _db;
