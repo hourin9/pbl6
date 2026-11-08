@@ -19,7 +19,7 @@ public class CaseController : ControllerBase {
     // different APIs?
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Case>> Get(int id)
+    public async Task<ActionResult<CaseDto>> Get(int id)
     {
         var cas = await _db.Cases
             .Include(c => c.Patient)
