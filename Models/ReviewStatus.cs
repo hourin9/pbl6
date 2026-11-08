@@ -1,6 +1,6 @@
-namespace PBL6.Models;
+global using StTup = (int Id, string Name);
 
-using StTup = (int Id, string Name);
+namespace PBL6.Models;
 
 public static class StatusIds {
     // Case waiting to be processed by model.
