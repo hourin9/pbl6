@@ -1,26 +1,36 @@
 namespace PBL6.Models;
 
+using StTup = (int Id, string Name);
+
 public static class StatusIds {
     // Case waiting to be processed by model.
-    public const int Pending = 1;
+    public static readonly StTup Pending = (1, "Pending");
 
     // Case being processed by model.
-    public const int Processing = 2;
+    public static readonly StTup Processing = (2, "Processing");
 
     // Model has returned result, waiting for doc's approval.
-    public const int Done = 3;
+    public static readonly StTup Done = (3, "Done");
 
     // Error happened during model detection process.
-    public const int Failed = 4;
+    public static readonly StTup Failed = (4, "Failed");
 
     // Doctor confirmed that patient doesn't have c. hemorrhage.
-    public const int Denied = 5;
+    public static readonly StTup Denied = (5, "Denied");
 
     // Doctor confirmed c. hemorrhage in the case.
-    public const int Confirmed = 6;
+    public static readonly StTup Confirmed = (6, "Confirmed");
 }
 
 public class ReviewStatus {
+    public ReviewStatus() {}
+
+    public ReviewStatus(StTup tup)
+    {
+        Id = tup.Id;
+        Name = tup.Name;
+    }
+
     public int Id {get; set;}
     public string Name {get; set;} = String.Empty;
 
