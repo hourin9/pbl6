@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PBL6.Models;
 using PBL6.Dtos;
+using PBL6.Services;
 
 namespace PBL6.Controllers.Api;
 
@@ -10,8 +11,9 @@ namespace PBL6.Controllers.Api;
 [Route("api/[controller]")]
 [ApiController]
 public class CaseController : ControllerBase {
-    public CaseController(AppDbContext db)
+    public CaseController(AppDbContext db, ScanImageService serv)
     {
+        _imgServ = serv;
         _db = db;
     }
 
@@ -58,6 +60,40 @@ public class CaseController : ControllerBase {
         return Ok();
     }
 
+    [HttpPost("create")]
+    public async Task<IActionResult> Create([FromBody] CaseCreateDto req)
+    {
+        using var transaction = await _db.Database.BeginTransactionAsync();
+
+        try {
+            var newCase = new Case {
+                CreatedAt = DateTime.UtcNow,
+                Note = req.Note,
+                PatientId = req.PatientId,
+                ReviewerId = req.ReviewerId,
+                StatusId = StatusIds.Pending.Id,
+            };
+
+            _db.Cases.Add(newCase);
+            await _db.SaveChangesAsync();
+
+            if (req.Images != null && req.Images.Count > 0) {
+                foreach (var file in req.Images)
+                    await _imgServ.Upload(file, newCase.Id, req.UploaderId);
+
+                await _db.SaveChangesAsync();
+            }
+
+            await transaction.CommitAsync();
+            return Ok(newCase);
+        }
+        catch {
+            await transaction.RollbackAsync();
+            return StatusCode(500);
+        }
+    }
+
     private readonly AppDbContext _db;
+    private readonly ScanImageService _imgServ;
 }
 
