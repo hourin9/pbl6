@@ -2,7 +2,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
+using PBL6.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<ScanImageService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
