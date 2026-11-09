@@ -40,3 +40,12 @@ public class CaseDto {
     public ReviewStatusDto? ReviewStatus;
 }
 
+public class CaseCreateDto {
+    public string Note { get; set; } = String.Empty;
+    public required int PatientId { get; set; }
+    public required int ReviewerId { get; set; }
+    public required int UploaderId { get; set; }
+
+    public List<IFormFile> Images { get; set; } = new();
+}
+
