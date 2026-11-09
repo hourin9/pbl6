@@ -29,8 +29,7 @@ public class ImageController : ControllerBase {
             return NotFound();
 
         var content = new FileStream(path, FileMode.Open, FileAccess.Read);
-
-        return Ok(File(content, "application/octet-stream"));
+        return Ok(File(content, "application/dicom"));
     }
 
     private readonly AppDbContext _db;
