@@ -9,7 +9,7 @@ namespace PBL6.Controllers.Api;
 using CaseListResult = Task<ActionResult<ICollection<CaseDto>>>;
 
 [Authorize]
-[Route("api/[controller]")]
+[Route("api/[controller]/[action]")]
 [ApiController]
 public class QueueController : ControllerBase {
     public QueueController(AppDbContext db)
@@ -18,19 +18,19 @@ public class QueueController : ControllerBase {
     }
 
     [HttpGet]
-    public async Task<ActionResult<ICollection<CaseDto>>> GetPending()
+    public async Task<ActionResult<ICollection<CaseDto>>> Pending()
         => Ok(await FilterStatus(StatusIds.Pending));
 
     [HttpGet]
-    public async Task<ActionResult<ICollection<CaseDto>>> GetProcDone()
+    public async Task<ActionResult<ICollection<CaseDto>>> ProcDone()
         => Ok(await FilterStatus(StatusIds.Done));
 
     [HttpGet]
-    public async Task<ActionResult<ICollection<CaseDto>>> GetDenied()
+    public async Task<ActionResult<ICollection<CaseDto>>> Denied()
         => Ok(await FilterStatus(StatusIds.Denied));
 
     [HttpGet]
-    public async Task<ActionResult<ICollection<CaseDto>>> GetConfirmed()
+    public async Task<ActionResult<ICollection<CaseDto>>> Confirmed()
         => Ok(await FilterStatus(StatusIds.Confirmed));
 
     private async CaseListResult FilterStatus(StTup id)
