@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PBL6.Models;
 
-namespace PBL6.Controllers.Api;
+namespace PBL6.Controllers;
 
 [Authorize]
 [Route("api/[controller]")]

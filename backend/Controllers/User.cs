@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using PBL6.Dtos;
 
-namespace PBL6.Controllers.Api;
+namespace PBL6.Controllers;
 
 [Authorize]
 [Route("api/[controller]")]

@@ -5,7 +5,7 @@ using PBL6.Models;
 using PBL6.Dtos;
 using PBL6.Services;
 
-namespace PBL6.Controllers.Api;
+namespace PBL6.Controllers;
 
 [Authorize]
 [Route("api/[controller]")]

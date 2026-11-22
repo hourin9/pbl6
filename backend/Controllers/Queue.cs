@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using PBL6.Models;
 using PBL6.Dtos;
 
-namespace PBL6.Controllers.Api;
+namespace PBL6.Controllers;
 
 using CaseListResult = Task<ActionResult<ICollection<CaseDto>>>;
 

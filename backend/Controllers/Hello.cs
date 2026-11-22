@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace PBL6.Controllers.Api;
+namespace PBL6.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
