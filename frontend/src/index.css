@@ -75,6 +75,8 @@ a { color: inherit; }
 .button-primary:hover { background: var(--teal-dark); box-shadow: 0 9px 22px #087f7533; }
 .button-quiet { color: var(--ink); background: transparent; }
 .button-quiet:hover { background: #e9f0ec; }
+.button-admin { color: var(--teal-dark); background: #edf5f1; border: 1px solid #cce0d7; }
+.button-admin:hover { background: #e1efe9; border-color: var(--teal); }
 .button-large { min-height: 52px; padding: 0 22px; font-size: 13px; }
 .hero-section { position: relative; max-width: 1280px; min-height: 610px; margin: auto; padding: 77px 56px 83px; display: grid; grid-template-columns: 1.03fr .97fr; align-items: center; gap: 36px; }
 .hero-copy { position: relative; z-index: 2; padding-bottom: 8px; }

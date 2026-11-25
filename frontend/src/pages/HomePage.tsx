@@ -123,7 +123,16 @@ export default function HomePage({ onNavigate }: Props) {
       </section>
 
       <section className="closing-section section-wrap" id="about">
-        <div className="closing-card"><div className="closing-sun" /><div className="closing-content"><div className="eyebrow"><span className="eyebrow-dot" /> NEURASCAN AI</div><h2>Công nghệ đồng hành.<br /><span>Chuyên môn dẫn đường.</span></h2><p>Một nền tảng hỗ trợ đội ngũ y tế làm việc tập trung, có tổ chức và luôn đặt quyết định chuyên môn ở trung tâm.</p><button className="button button-primary" onClick={() => onNavigate("auth-doctor")}>Vào cổng bác sĩ <Arrow /></button></div></div>
+        <div className="closing-card">
+          <div className="closing-sun" />
+          <div className="closing-art" aria-hidden="true">
+            <div className="art-ring ring-a" />
+            <div className="art-ring ring-b" />
+            <div className="art-cross">+</div>
+            <span>NEURA<br />CLINICAL</span>
+          </div>
+          <div className="closing-content"><div className="eyebrow"><span className="eyebrow-dot" /> NEURASCAN AI</div><h2>Công nghệ đồng hành.<br /><span>Chuyên môn dẫn đường.</span></h2><p>Một nền tảng hỗ trợ đội ngũ y tế làm việc tập trung, có tổ chức và luôn đặt quyết định chuyên môn ở trung tâm.</p><button className="button button-primary" onClick={() => onNavigate("auth-doctor")}>Vào cổng bác sĩ <Arrow /></button></div>
+        </div>
       </section>
 
       <footer className="landing-footer"><a className="brand footer-brand" href="#home"><Mark className="brand-mark" /><span>NeuraScan<span className="brand-accent">AI</span></span></a><p>Hỗ trợ chuyên môn thần kinh · Công nghệ vì chăm sóc tốt hơn</p><span>© 2026 NeuraScan AI</span></footer>
