@@ -1,3 +1,24 @@
+# Hướng dẫn chạy Frontend (`ai-medical-diagnosis`)
+
+Tài liệu hướng dẫn cài đặt, cấu hình môi trường và chạy giao diện React + Vite cho dự án **PBL6** trên máy tính.
+
+---
+
+## 1. Điều kiện tiên quyết
+
+- **Node.js** (khuyên dùng bản LTS, ví dụ Node 20/22) và **npm** (hoặc `pnpm`).
+- **Backend ASP.NET** của repo `hourin9/pbl6` đã sẵn sàng chạy ở local (mặc định ví dụ `http://localhost:5134`).
+- **Git** để cập nhật mã nguồn.
+
+---
+
+## 2. Cài đặt dependencies
+
+Mở terminal tại thư mục `frontend`:
+
+```cmd
+cd /d C:\Users\Administrator\workspace-pbl6\pbl6\frontend
+npm install
 # ai-medical-diagnosis
 
 Frontend React + Vite cho ứng dụng chẩn đoán hình ảnh.
