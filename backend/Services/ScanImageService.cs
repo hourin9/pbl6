@@ -14,6 +14,23 @@ public class ScanImageService {
         _db = db;
     }
 
+    public async Task<Stream?> Get(int id)
+    {
+        ScanImage? img = await _db.ScanImages.FindAsync(id);
+        if (img == null)
+            return null;
+
+        var path = Path.IsPathRooted(img.FilePath)
+            ? img.FilePath
+            : Path.Combine(_env.WebRootPath ?? _env.ContentRootPath, img.FilePath);
+
+        if (!System.IO.File.Exists(path))
+            return null;
+
+        var content = new FileStream(path, FileMode.Open, FileAccess.Read);
+        return content;
+    }
+
     [HttpPost("upload")]
     public async Task<ScanImage> Upload(IFormFile f, int cas, int uploader)
     {

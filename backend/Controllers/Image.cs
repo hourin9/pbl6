@@ -20,17 +20,11 @@ public class ImageController : ControllerBase {
     [HttpGet("{id:int}")]
     public async Task<IActionResult> Get(int id)
     {
-        ScanImage? img = await _db.ScanImages.FindAsync(id);
-        if (img == null)
+        var result = await _imgServ.Get(id);
+        if (result == null)
             return NotFound();
 
-        var path = img.FilePath;
-
-        if (!System.IO.File.Exists(path))
-            return NotFound();
-
-        var content = new FileStream(path, FileMode.Open, FileAccess.Read);
-        return Ok(File(content, "application/dicom"));
+        return File(result, "application/dicom");
     }
 
     [HttpPost("upload")]
