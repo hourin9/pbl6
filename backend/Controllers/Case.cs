@@ -40,7 +40,7 @@ public class CaseController : ControllerBase {
             return NotFound();
 
         cas.ReviewStatus = await _db.ReviewStatuses
-            .FindAsync(Models.StatusIds.Done);
+            .FindAsync(Models.StatusIds.Done.Id);
 
         cas.Note = note;
 
@@ -55,8 +55,12 @@ public class CaseController : ControllerBase {
         if (cas == null)
             return NotFound();
 
-        // Queue stuff here
+        cas.ReviewStatus = await _db.ReviewStatuses
+            .FindAsync(Models.StatusIds.Denied.Id);
 
+        cas.Note = note;
+
+        await _db.SaveChangesAsync();
         return Ok();
     }
 
