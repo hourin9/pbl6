@@ -40,7 +40,7 @@ public class CaseController : ControllerBase {
             return NotFound();
 
         cas.ReviewStatus = await _db.ReviewStatuses
-            .FindAsync(Models.StatusIds.Done.Id);
+            .FindAsync(Models.StatusIds.Confirmed.Id);
 
         cas.Note = note;
 
