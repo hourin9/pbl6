@@ -36,8 +36,8 @@ public class CaseDto {
 
     public string Note {get; set;} = String.Empty;
 
-    public PatientDto? Patient;
-    public ReviewStatusDto? ReviewStatus;
+    public PatientDto? Patient {get; set;}
+    public ReviewStatusDto? ReviewStatus {get; set;}
 }
 
 public class CaseCreateDto {
